@@ -1,0 +1,12 @@
+
+.iam { }
+
+.iam .iam-container { }
+
+.iam .iam-container .top, .iam .iam-container .bottom {
+    display: flex;
+}
+
+.iam .iam-container .bottom .right .navigate-element {
+    cursor: pointer;
+}
