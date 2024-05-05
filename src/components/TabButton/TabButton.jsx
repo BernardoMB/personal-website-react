@@ -19,3 +19,31 @@ export function TabButton2({children}) {
         </li>
     )
 }
+
+export function TabButton3({children}) {
+    function handleClick(event) {
+        console.log('Button clicked', event);
+    }
+
+    return (
+        <li>
+            <button onClick={handleClick}>{children}</button>
+        </li>
+    )
+}
+
+export function TabButton4({children, onClick}) {
+    return (
+        <li>
+            <button onClick={onClick}>{children}</button>
+        </li>
+    )
+}
+
+export function TabButton5({children, onSelect}) {
+    return (
+        <li>
+            <button onClick={onSelect}>{children}</button>
+        </li>
+    )
+}
