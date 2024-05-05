@@ -1,18 +1,16 @@
 // jsx: javascript syntax extension
 
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { Parallax } from './components/Parallax'
+import { Parallax } from './components/Parallax/Parallax'
 import { Header } from './components/Header'
 import { Work } from './components/Work'
 import { Iam } from './components/Iam/Iam'
 import { Tabs } from './components/Tabs/Tabs'
 import { TestComponents } from './components/TestComponents/TestComponents'
+import { GeneratedCode } from './components/GeneratedCode/GeneratedCode'
+import { ConditionalContent } from './components/ConditionalContent'
 
 import arrowDownSvg from './assets/arrow-down.svg' // This cannot be done in regular javascript
-import { ConditionalContent } from './components/ConditionalContent'
 
 const personalInfo = {
   firstName: 'Amanda',
@@ -27,8 +25,6 @@ const phrases = [
 ]
 
 export function App() { // <-- App here is a component. A component is a function that must resturn a rederable value.
-  const [count, setCount] = useState(0)
-
   return (
     <>
       {/* <Parallax 
@@ -37,33 +33,14 @@ export function App() { // <-- App here is a component. A component is a functio
         lastName={personalInfo.lastName} 
         arrowDownSvg={arrowDownSvg}
       /> */}
-      <Parallax {...{...personalInfo, arrowDownSvg}} />
+      <Parallax {...{...personalInfo, arrowDownSvg}} className='parallax-section' />
       <Header {...personalInfo} />
       <Work />
       <Iam {...{phrases, personalInfo}} />
       <Tabs />
       <TestComponents />
       <ConditionalContent/>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <GeneratedCode />
     </>
   )
 }

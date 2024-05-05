@@ -1,3 +1,5 @@
+import './TabButton.css'
+
 export function TabButton(props) {
     return (
         <li>
@@ -40,10 +42,10 @@ export function TabButton4({children, onClick}) {
     )
 }
 
-export function TabButton5({children, onSelect}) {
+export function TabButton5({children, onSelect, isSelected}) {
     return (
         <li>
-            <button onClick={onSelect}>{children}</button>
+            <button className={ isSelected ? 'active' : undefined } onClick={onSelect}>{children}</button>
         </li>
     )
 }
