@@ -5,15 +5,19 @@ import {
     TabButton4,
     TabButton5
 } from "../TabButton/TabButton"
+import { useState } from "react" // Import the useState hook
 
 export function Tabs() {
-    let tabContent = 'Select a tab'
+    //const stateArray = useState('Select a tab')
+    // Or use array destructuring
+    const [ selectedTab, setSelectedTab ] = useState('Select a tab')
     function handleSelect() {
         console.log('Handle select')
     }
     function handleWorkingTabSelected(selectedTab) {
         console.log('Handle working tab selected', selectedTab)
-        tabContent = `${selectedTab} selected`
+        const tabContent = `${selectedTab} selected`
+        setSelectedTab(tabContent)
     }
     return (
         <>
@@ -27,7 +31,7 @@ export function Tabs() {
                 <TabButton5 onSelect={() => handleWorkingTabSelected('Tab7')}>Tab7 (working)</TabButton5>
                 <TabButton5 onSelect={() => handleWorkingTabSelected('Tab8')}>Tab8 (working)</TabButton5>
             </menu>
-            {tabContent}
+            {selectedTab}
         </>
     )
 }
