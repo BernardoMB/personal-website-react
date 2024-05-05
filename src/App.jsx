@@ -12,6 +12,7 @@ import { Tabs } from './components/Tabs/Tabs'
 import { TestComponents } from './components/TestComponents/TestComponents'
 
 import arrowDownSvg from './assets/arrow-down.svg' // This cannot be done in regular javascript
+import { ConditionalContent } from './components/ConditionalContent'
 
 const personalInfo = {
   firstName: 'Amanda',
@@ -42,6 +43,7 @@ export function App() { // <-- App here is a component. A component is a functio
       <Iam {...{phrases, personalInfo}} />
       <Tabs />
       <TestComponents />
+      <ConditionalContent/>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
