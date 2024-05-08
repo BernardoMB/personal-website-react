@@ -23,6 +23,8 @@ function deriveActivePlayer(gameTurns) {
 }
 
 export function TicTacToe() {
+    const [ player1, setPlayer1 ] = useState('Player 1')
+    const [ player2, setPlayer2 ] = useState('Player 2')
     const [ gameTurns, setGameTurns ] = useState([])
     const activePlayer = deriveActivePlayer(gameTurns)
     let gameBoard = [...initialGameBoard.map(innerArray => [...innerArray])]
@@ -41,7 +43,11 @@ export function TicTacToe() {
             && firstSquareSymbol === secondSquareSymbol 
             && secondSquareSymbol === thirdSquareSymbol
         ) {
-            winner = firstSquareSymbol
+            if (firstSquareSymbol === 'X') {
+                winner = player1
+            } else {
+                winner = player2
+            }
         }
     }
     const hasDraw = gameTurns.length === 9 && !winner
@@ -58,6 +64,13 @@ export function TicTacToe() {
     function handleRematch() {
         setGameTurns([])
     }
+    function handlePlayerNameChange(player, name) {
+        if (player === 'X') {
+            setPlayer1(name)
+        } else {
+            setPlayer2(name)
+        }
+    }
     return (
         <div className="tictactoe">
             <div className="tictactoe-container">
@@ -68,8 +81,16 @@ export function TicTacToe() {
                 <main>
                     <div id="game-container">
                         <ol id="players" className='highlight-player'>
-                            <Player initialName="Player 1" symbol="X" isActive={activePlayer === 'X'}></Player>
-                            <Player initialName="Player 2" symbol="O" isActive={activePlayer === 'O'}></Player>
+                            <Player initialName={player1}
+                                symbol="X" 
+                                isActive={activePlayer === 'X'} 
+                                onPlayerNameChange={handlePlayerNameChange}>
+                            </Player>
+                            <Player initialName={player2}
+                                symbol="O" 
+                                isActive={activePlayer === 'O'} 
+                                onPlayerNameChange={handlePlayerNameChange}>
+                            </Player>
                         </ol>
                         {(winner || hasDraw) && <GameOver winner={winner} onRematch={handleRematch}></GameOver>}
                         <GameBoard board={gameBoard} onSelectSquare={handleSelectSquare}></GameBoard>
