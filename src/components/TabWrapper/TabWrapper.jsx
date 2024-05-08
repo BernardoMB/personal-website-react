@@ -1,9 +1,10 @@
-export function TabWrapper({buttons, children}) {
+export function TabWrapper({buttons, buttonsContainer, children}) {
+    const ButtonsContainer = buttonsContainer;
     return (
         <>
-            <menu>
+            <ButtonsContainer>
                 {buttons}
-            </menu>
+            </ButtonsContainer>
             {children}
         </>
     )

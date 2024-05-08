@@ -46,7 +46,7 @@ export function Tabs() {
                     <TabButton5 onSelect={() => handleWorkingTabSelected(4)} isSelected={ selectedTabIndex === 4 }>Tab9 (working)</TabButton5> */}
                     {[0,1,2,3,4].map(index => <TabButton5 key={index} onSelect={() => handleWorkingTabSelected(index)} isSelected={ selectedTabIndex === index }>Tab{index + 5} (working)</TabButton5>)}
                 </>
-            }>
+            } buttonsContainer="menu">
                 {selectedTab}
                 <div className="testimony">
                     <div className="testimony-container">

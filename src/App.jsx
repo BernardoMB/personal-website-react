@@ -11,6 +11,7 @@ import { GeneratedCode } from './components/GeneratedCode/GeneratedCode'
 import { ConditionalContent } from './components/ConditionalContent'
 
 import arrowDownSvg from './assets/arrow-down.svg' // This cannot be done in regular javascript
+import { TicTacToe } from './components/Tictactoe/tictactoe'
 
 const personalInfo = {
   firstName: 'Amanda',
@@ -41,6 +42,7 @@ export function App() { // <-- App here is a component. A component is a functio
       <TestComponents />
       <ConditionalContent/>
       <GeneratedCode />
+      <TicTacToe></TicTacToe>
     </>
   )
 }
