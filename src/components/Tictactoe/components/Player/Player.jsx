@@ -14,14 +14,12 @@ export function Player({ initialName, symbol, isActive }) {
         playerNameTemplate = <input type="text" required value={playerName} onChange={handleChange} />
     }
     return (
-        <>
-            <li className={ isActive ? 'active' : undefined }>
-                <span className='player'>
-                    {playerNameTemplate}
-                    <span className='player-symbol'>{symbol}</span>
-                </span>
-                <button onClick={handleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
-            </li>
-        </>
+        <li className={ isActive ? 'active' : undefined }>
+            <span className='player'>
+                {playerNameTemplate}
+                <span className='player-symbol'>{symbol}</span>
+            </span>
+            <button onClick={handleEditClick}>{isEditing ? 'Save' : 'Edit'}</button>
+        </li>
     )
 }
