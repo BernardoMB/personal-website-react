@@ -23,8 +23,7 @@ function deriveActivePlayer(gameTurns) {
 }
 
 export function TicTacToe() {
-    const [ player1, setPlayer1 ] = useState('Player 1')
-    const [ player2, setPlayer2 ] = useState('Player 2')
+    const [ players, setPlayers ] = useState({ 'X': 'Player 1', 'O': 'Player 2' })
     const [ gameTurns, setGameTurns ] = useState([])
     const activePlayer = deriveActivePlayer(gameTurns)
     let gameBoard = [...initialGameBoard.map(innerArray => [...innerArray])]
@@ -43,11 +42,7 @@ export function TicTacToe() {
             && firstSquareSymbol === secondSquareSymbol 
             && secondSquareSymbol === thirdSquareSymbol
         ) {
-            if (firstSquareSymbol === 'X') {
-                winner = player1
-            } else {
-                winner = player2
-            }
+            winner = players[firstSquareSymbol]
         }
     }
     const hasDraw = gameTurns.length === 9 && !winner
@@ -65,11 +60,10 @@ export function TicTacToe() {
         setGameTurns([])
     }
     function handlePlayerNameChange(player, name) {
-        if (player === 'X') {
-            setPlayer1(name)
-        } else {
-            setPlayer2(name)
-        }
+        setPlayers(prevPlayers => ({
+            ...prevPlayers,
+            [player]: name
+        }))
     }
     return (
         <div className="tictactoe">
@@ -81,12 +75,12 @@ export function TicTacToe() {
                 <main>
                     <div id="game-container">
                         <ol id="players" className='highlight-player'>
-                            <Player initialName={player1}
+                            <Player initialName={players['X']}
                                 symbol="X" 
                                 isActive={activePlayer === 'X'} 
                                 onPlayerNameChange={handlePlayerNameChange}>
                             </Player>
-                            <Player initialName={player2}
+                            <Player initialName={players['O']}
                                 symbol="O" 
                                 isActive={activePlayer === 'O'} 
                                 onPlayerNameChange={handlePlayerNameChange}>
