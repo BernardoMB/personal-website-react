@@ -4,10 +4,14 @@ export function Player({ initialName, symbol, isActive, onPlayerNameChange }) {
     const [ playerName, setPlayerName ] = useState(initialName)
     const [ isEditing, setIsEditing ] = useState(false)
     function handleEditClick() {
-        if (isEditing) {
-            onPlayerNameChange(symbol, playerName)
+        if (playerName.trim()) {
+            if (isEditing) {
+                onPlayerNameChange(symbol, playerName.trim())
+            }
+            setIsEditing((isEditing) => !isEditing)
+        } else {
+            alert('Player name cannot be empty')
         }
-        setIsEditing((isEditing) => !isEditing)
     }
     function handleChange(event) {
         setPlayerName(event.target.value);
