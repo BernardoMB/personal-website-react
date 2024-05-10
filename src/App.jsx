@@ -12,6 +12,7 @@ import { ConditionalContent } from './components/ConditionalContent'
 
 import arrowDownSvg from './assets/arrow-down.svg' // This cannot be done in regular javascript
 import { TicTacToe } from './components/Tictactoe/tictactoe'
+import InvestmentCalculator from './components/InvestmentCalculator/InvestmentCalculator'
 
 const personalInfo = {
   firstName: 'Amanda',
@@ -34,7 +35,7 @@ export function App() { // <-- App here is a component. A component is a functio
         lastName={personalInfo.lastName} 
         arrowDownSvg={arrowDownSvg}
       /> */}
-      <Parallax {...{...personalInfo, arrowDownSvg}} className='parallax-section' />
+      <Parallax {...{...personalInfo, arrowDownSvg}} className='display-block' />
       <Header {...personalInfo} />
       <Work />
       <Iam {...{phrases, personalInfo}} />
@@ -43,6 +44,7 @@ export function App() { // <-- App here is a component. A component is a functio
       <ConditionalContent/>
       <GeneratedCode />
       <TicTacToe></TicTacToe>
+      <InvestmentCalculator></InvestmentCalculator>
     </>
   )
 }
