@@ -5,6 +5,7 @@ const IMAGES = [
     "https://media.lmpm.website/uploads/sites/18/2023/07/Untitled-design-2023-08-10T093341.090.png",
     "https://cms.accuweather.com/wp-content/uploads/2017/05/sunset.jpg?w=1024",
     "https://upload.wikimedia.org/wikipedia/commons/5/58/Sunset_2007-1.jpg",
+    "https://www.popsci.com/uploads/2018/12/10/QKOPUFKJMVV7JE2YNBCV2FILFQ.jpg?auto=webp"
 ];
 
 export function Parallax({
@@ -32,11 +33,11 @@ export function Parallax({
     setTimeout(changeBackgroundImage, 3 * 1000);
     setTimeout(() => {
         if (document.querySelector('#background-image')) {
-            document.querySelector('#background-image').classList.remove(styles['active']);
+            //document.querySelector('#background-image').classList.remove(styles['active']);
         }
     }, 0);
     setTimeout(() => {
-        document.querySelector('#background-image').classList.add(styles['active']);
+        //document.querySelector('#background-image').classList.add(styles['active']);
     }, 0.01 * 1000);
     return (
         <>
@@ -44,9 +45,21 @@ export function Parallax({
             <div {...props}></div>
             <section id="parallax-container" className={styles['parallax-container']}>
                 <div className={styles['parallax']}>
-                    <div id="background-image" className={styles['background-image']/*  + ` ${active ? styles['active'] : undefined}` */} style={{ backgroundImage: `url(${displayedImage})` }}>
+                    
+                    {/* <div id="background-image" className={styles['background-image'] + ' ' + styles['parallax-element']} style={{ backgroundImage: `url(${displayedImage})` }}>
                         <div className={styles['background-image-overlay']}></div>
+                    </div> */}
+
+                    <div className={`${styles['parallax-element']}`}>
+                        <div className={`${styles['crossfade-wrapper']} ${styles['fadein-on-page-load']}`}>
+                            <div className={`${styles['crossfade-animation']} ${styles['fixed-background-image']}`}></div>
+                            <div className={`${styles['crossfade-animation']} ${styles['fixed-background-image']}`}></div>
+                            <div className={`${styles['crossfade-animation']} ${styles['fixed-background-image']}`}></div>
+                            <div className={`${styles['crossfade-animation']} ${styles['fixed-background-image']}`}></div>
+                            <div className={styles['background-image-overlay']}></div>
+                        </div>
                     </div>
+
                     <div className={styles['parallax-content']}>
                         <div className={styles['card']}>
                             <div className={styles['card-container']}>
