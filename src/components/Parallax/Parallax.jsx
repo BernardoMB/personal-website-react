@@ -26,19 +26,21 @@ export function Parallax({
             }
         })
     }, 0);
-    function changeBackgroundImage() {
-        setCount(count++ % IMAGES.length);
-    }
-    const displayedImage = IMAGES[count++ % IMAGES.length]
-    setTimeout(changeBackgroundImage, 3 * 1000);
-    setTimeout(() => {
-        if (document.querySelector('#background-image')) {
-            //document.querySelector('#background-image').classList.remove(styles['active']);
-        }
-    }, 0);
-    setTimeout(() => {
-        //document.querySelector('#background-image').classList.add(styles['active']);
-    }, 0.01 * 1000);
+    //#region Parallax laternative 1
+    // function changeBackgroundImage() {
+    //     setCount(count++ % IMAGES.length);
+    // }
+    // const displayedImage = IMAGES[count++ % IMAGES.length]
+    // setTimeout(changeBackgroundImage, 3 * 1000);
+    // setTimeout(() => {
+    //     if (document.querySelector('#background-image')) {
+    //         document.querySelector('#background-image').classList.remove(styles['active']);
+    //     }
+    // }, 0);
+    // setTimeout(() => {
+    //     document.querySelector('#background-image').classList.add(styles['active']);
+    // }, 0.01 * 1000);
+    //#endregion
     return (
         <>
             <link href="https://fonts.googleapis.com/css?family=Montserrat:400|Josefin+Sans:regular|Lato:300|Pathway+Gothic+One:regular|Pinyon+Script:regular" rel="stylesheet" type="text/css"></link>
@@ -46,10 +48,12 @@ export function Parallax({
             <section id="parallax-container" className={styles['parallax-container']}>
                 <div className={styles['parallax']}>
                     
+                    {/* Parallax alternative 1 */}
                     {/* <div id="background-image" className={styles['background-image'] + ' ' + styles['parallax-element']} style={{ backgroundImage: `url(${displayedImage})` }}>
                         <div className={styles['background-image-overlay']}></div>
                     </div> */}
 
+                    {/* Parallax alternative 2 */}
                     <div className={`${styles['parallax-element']}`}>
                         <div className={`${styles['crossfade-wrapper']} ${styles['fadein-on-page-load']}`}>
                             <div className={`${styles['crossfade-animation']} ${styles['fixed-background-image']}`}></div>
