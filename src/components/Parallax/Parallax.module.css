@@ -3,9 +3,11 @@
     overflow: hidden;
 }
 
-.parallax-container ~ * {
+/* Commenting this because the background color of sibiling elements is set programatically depending on the value of the appBackgroundColor parameter. 
+See javascript code for this component */
+/* .parallax-container ~ * {
     background-color: white;
-}
+} */
 
 @keyframes brackground-animation {
     to {
@@ -30,7 +32,7 @@
 }
 
 .background-image {
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/7/74/Acapulco_sunset_summer.jpg);
+    /* background-image: url(https://upload.wikimedia.org/wikipedia/commons/7/74/Acapulco_sunset_summer.jpg); */
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

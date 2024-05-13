@@ -12,6 +12,7 @@ export function Parallax({
     alias,
     lastName,
     arrowDownSvg,
+    theme,
     appBackgroundColor = 'white',
     ...props // Forwarded props
 }) {

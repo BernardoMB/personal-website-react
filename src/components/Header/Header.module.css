@@ -1,0 +1,40 @@
+.app-header {
+    height: 64px;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 16px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0vh;
+    z-index: 10;
+    box-shadow: 0 0 1px 1px rgba(20, 23, 28, .1), 0 3px 1px 0 rgba(20, 23, 28, .1);
+}
+
+.app-header .header-container {
+    display: flex;
+    max-width: 1280px;
+    margin: auto;
+    width: 100%;
+}
+
+.app-header .left {
+    display: flex;
+}
+
+.app-header .right {
+    display: flex;
+}
+
+.app-header .links {
+    display: flex;
+}
+
+.app-header .link {
+
+}
