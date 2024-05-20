@@ -42,6 +42,7 @@ export function TestComponents() {
                 //#region 2
             }
             <ChildCopmponent2
+                // Prefered way
                 prop1={arrayOfObjects[0].prop1}
                 prop2={arrayOfObjects[0].prop2}
                 prop3={arrayOfObjects[0].prop3}

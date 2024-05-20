@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './Parallax.module.css'
+import styled from 'styled-components'
 
 const IMAGES = [
     "https://media.lmpm.website/uploads/sites/18/2023/07/Untitled-design-2023-08-10T093341.090.png",
@@ -7,6 +8,17 @@ const IMAGES = [
     "https://upload.wikimedia.org/wikipedia/commons/5/58/Sunset_2007-1.jpg",
     "https://www.popsci.com/uploads/2018/12/10/QKOPUFKJMVV7JE2YNBCV2FILFQ.jpg?auto=webp"
 ];
+
+const IMAGE_DURATION = 3
+
+const Image = styled.div`
+    animation: ${styles['crossFade']} ${(props) => {
+        return props.totalimages * IMAGE_DURATION
+    }}s infinite;
+    & p {
+        color: red; /* This will target all child p elements of Image */
+    }
+`
 
 export function Parallax({
     firstName,
@@ -26,44 +38,26 @@ export function Parallax({
             }
         })
     }, 0);
-    //#region Parallax laternative 1
-    // function changeBackgroundImage() {
-    //     setCount(count++ % IMAGES.length);
-    // }
-    // const displayedImage = IMAGES[count++ % IMAGES.length]
-    // setTimeout(changeBackgroundImage, 3 * 1000);
-    // setTimeout(() => {
-    //     if (document.querySelector('#background-image')) {
-    //         document.querySelector('#background-image').classList.remove(styles['active']);
-    //     }
-    // }, 0);
-    // setTimeout(() => {
-    //     document.querySelector('#background-image').classList.add(styles['active']);
-    // }, 0.01 * 1000);
-    //#endregion
     return (
         <>
             <link href="https://fonts.googleapis.com/css?family=Montserrat:400|Josefin+Sans:regular|Lato:300|Pathway+Gothic+One:regular|Pinyon+Script:regular" rel="stylesheet" type="text/css"></link>
             <div {...props}></div>
             <section id="parallax-container" className={styles['parallax-container']}>
                 <div className={styles['parallax']}>
-                    
-                    {/* Parallax alternative 1 */}
-                    {/* <div id="background-image" className={styles['background-image'] + ' ' + styles['parallax-element']} style={{ backgroundImage: `url(${displayedImage})` }}>
-                        <div className={styles['background-image-overlay']}></div>
-                    </div> */}
-
-                    {/* Parallax alternative 2 */}
                     <div className={`${styles['parallax-element']}`}>
                         <div className={`${styles['crossfade-wrapper']} ${styles['fadein-on-page-load']}`}>
-                            <div className={`${styles['crossfade-animation']} ${styles['fixed-background-image']}`}></div>
-                            <div className={`${styles['crossfade-animation']} ${styles['fixed-background-image']}`}></div>
-                            <div className={`${styles['crossfade-animation']} ${styles['fixed-background-image']}`}></div>
-                            <div className={`${styles['crossfade-animation']} ${styles['fixed-background-image']}`}></div>
+                            {IMAGES.map((img, index) => {
+                                const animationDelay = (((index + 1) * IMAGE_DURATION - IMAGES.length) * -1) + IMAGES.length * IMAGE_DURATION - IMAGE_DURATION -1
+                                const style = {backgroundImage: `url(${img})`, animationDelay: animationDelay + 's' }
+                                return <Image key={index} 
+                                    className={`${styles['fixed-background-image']}`} 
+                                    style={style}
+                                    totalimages={IMAGES.length}>
+                                </Image>
+                            })}
                             <div className={styles['background-image-overlay']}></div>
                         </div>
                     </div>
-
                     <div className={styles['parallax-content']}>
                         <div className={styles['card']}>
                             <div className={styles['card-container']}>

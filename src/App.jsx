@@ -13,7 +13,9 @@ import { ConditionalContent } from './components/ConditionalContent'
 import arrowDownSvg from './assets/arrow-down.svg' // This cannot be done in regular javascript
 import { TicTacToe } from './components/Tictactoe/tictactoe'
 import InvestmentCalculator from './components/InvestmentCalculator/InvestmentCalculator'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import Contact from './components/Contact/Contact'
+import Inactivity from './components/Inactivity/Inactivity'
 
 const personalInfo = {
   firstName: 'Amanda',
@@ -42,6 +44,23 @@ const phrases = [
 
 export function App() { // <-- App here is a component. A component is a function that must resturn a rederable value.
   const [theme, setTheme] = useState(THEMES[0])
+  //#region Inactivity timer
+  const [userActive, setUserActive] = useState(true)
+  let inactivityTimer = useRef()
+  function handleInactivityTimerComplete() {
+    setUserActive(false)
+  }
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimer)
+    setUserActive(true)
+  }
+  inactivityTimer = setTimeout(function() {
+    handleInactivityTimerComplete()
+  }, 
+    //1000 * 60 * 5 /* 5 minutes */
+    1000 *  5 /* 5 seconds */
+  )
+  //#endregion
   return (
     <>
       {/* <Parallax 
@@ -54,10 +73,12 @@ export function App() { // <-- App here is a component. A component is a functio
       <Header {...personalInfo} />
       <Work />
       <Iam {...{phrases, personalInfo}} />
+      <Inactivity isActive={userActive} onResetInactivity={resetInactivityTimer}></Inactivity>
       <Tabs />
       <TestComponents />
       <ConditionalContent/>
       <GeneratedCode />
+      <Contact></Contact>
       <TicTacToe></TicTacToe>
       <InvestmentCalculator></InvestmentCalculator>
     </>
