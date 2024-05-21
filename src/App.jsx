@@ -38,6 +38,8 @@ const THEMES = [
 
 const INACTIVITY_TIMEOUT = 1000 *  10 /* 10 seconds */
 
+const SHOW_INACTIVITY_DIALOG = false
+
 const phrases = [
   {num: 1, phrase: 'Photographer of all love, colors and cultures.' },
   {num: 2, phrase: 'Creating dramatic images of deeply sentimental moments.' },
@@ -67,7 +69,9 @@ export function App() { // <-- App here is a component. A component is a functio
   }
   
   function handleInactivityTimerComplete() {
-    dialogRef.current.showModal()
+    if (SHOW_INACTIVITY_DIALOG) {
+      dialogRef.current.showModal()
+    }
     setUserActive(false)
   }
 

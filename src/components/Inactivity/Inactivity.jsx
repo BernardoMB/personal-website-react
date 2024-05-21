@@ -3,7 +3,11 @@ import styles from './Inactivity.module.css'
 
 export default function Inactivity({dialogRef, userIsActive, resetInactivityHandler, loginHandler}) {
     function handleClick() {
-        resetInactivityHandler()
+        if (userIsActive) {
+            resetInactivityHandler()
+        } else {
+            loginHandler()
+        }
     }
     return <>
         {/* {userIsActive === false ? <InactivityModal dialogRef={dialogRef} userIsActive={userIsActive} loginHandler={loginHandler}></InactivityModal> : undefined} */}
