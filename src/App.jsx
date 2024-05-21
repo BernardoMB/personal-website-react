@@ -51,34 +51,28 @@ export function App() { // <-- App here is a component. A component is a functio
   let inactivityTimer = useRef()
   
   function clearTimer() {
-    console.log('Clearing timer')
     clearTimeout(inactivityTimer)
   }
 
   function startTimer() {
-    console.log('Starting timer')
     inactivityTimer = setTimeout(function() {
       handleInactivityTimerComplete()
     }, INACTIVITY_TIMEOUT)
   }
 
   function restartTimer() {
-    console.log('Restarting timer')
     clearTimer()
     startTimer()
   }
   
   function handleInactivityTimerComplete() {
-    console.log('Setting user as inactive')
     setUserActive(false)
   }
 
   function resetInactivityTimer() {
-    console.log('Setting user as active')
     setUserActive(true)
   }
 
-  console.log('Executing component. Is user active', userActive)
   if (userActive) {
     startTimer()
   }
