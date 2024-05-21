@@ -1,15 +1,18 @@
 import styles from './InactivityModal.module.css'
+import { forwardRef } from 'react'
 
-export default function InactivityModal({dialogRef, userIsActive, loginHandler}) {
+const InactivityModal = forwardRef(function InactivityModal({ userIsActive, loginHandler }, ref) {
     function goToLoginScreen() {
         loginHandler()
     }
     return <>
-        <dialog ref={dialogRef} className={styles['result-modal']}>
+        <dialog ref={ref} className={styles['result-modal']}>
             <h2>Inactivity timeout expired</h2>
             <form method="dialog">
                 <button onClick={goToLoginScreen}>Go to login screen</button>
             </form>
         </dialog>
     </>
-}
+})
+
+export default InactivityModal

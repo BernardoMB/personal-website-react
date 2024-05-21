@@ -38,7 +38,7 @@ const THEMES = [
 
 const INACTIVITY_TIMEOUT = 1000 *  10 /* 10 seconds */
 
-const SHOW_INACTIVITY_DIALOG = false
+const SHOW_INACTIVITY_DIALOG = true
 
 const phrases = [
   {num: 1, phrase: 'Photographer of all love, colors and cultures.' },
