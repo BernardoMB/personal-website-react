@@ -70,7 +70,7 @@ export function App() { // <-- App here is a component. A component is a functio
   
   function handleInactivityTimerComplete() {
     if (SHOW_INACTIVITY_DIALOG) {
-      dialogRef.current.showModal()
+      dialogRef.current.open()
     }
     setUserActive(false)
   }
