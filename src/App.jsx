@@ -49,6 +49,7 @@ export function App() { // <-- App here is a component. A component is a functio
   //#region Inactivity timer
   const [userActive, setUserActive] = useState(true)
   let inactivityTimer = useRef()
+  let dialogRef = useRef()
   
   function clearTimer() {
     clearTimeout(inactivityTimer)
@@ -66,6 +67,7 @@ export function App() { // <-- App here is a component. A component is a functio
   }
   
   function handleInactivityTimerComplete() {
+    dialogRef.current.showModal()
     setUserActive(false)
   }
 
@@ -89,7 +91,7 @@ export function App() { // <-- App here is a component. A component is a functio
       <Header {...personalInfo} />
       <Work />
       <Iam {...{phrases, personalInfo}} />
-      <Inactivity userIsActive={userActive} resetInactivityHandler={restartTimer} loginHandler={resetInactivityTimer}></Inactivity>
+      <Inactivity dialogRef={dialogRef} userIsActive={userActive} resetInactivityHandler={restartTimer} loginHandler={resetInactivityTimer}></Inactivity>
       <Tabs />
       <TestComponents />
       <ConditionalContent/>
