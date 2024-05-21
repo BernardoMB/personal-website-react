@@ -54,7 +54,7 @@ See javascript code for this component */
     animation-timeline: scroll();
 
     /* z-index commented because the content of the parallax section needs to be clickable */
-    /* z-index: -1; */
+    z-index: -1;
 
     display: flex;
     justify-content: center;

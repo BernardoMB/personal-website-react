@@ -36,6 +36,8 @@ const THEMES = [
   },
 ]
 
+const INACTIVITY_TIMEOUT = 1000 *  10 /* 10 seconds */
+
 const phrases = [
   {num: 1, phrase: 'Photographer of all love, colors and cultures.' },
   {num: 2, phrase: 'Creating dramatic images of deeply sentimental moments.' },
@@ -47,19 +49,39 @@ export function App() { // <-- App here is a component. A component is a functio
   //#region Inactivity timer
   const [userActive, setUserActive] = useState(true)
   let inactivityTimer = useRef()
+  
+  function clearTimer() {
+    console.log('Clearing timer')
+    clearTimeout(inactivityTimer)
+  }
+
+  function startTimer() {
+    console.log('Starting timer')
+    inactivityTimer = setTimeout(function() {
+      handleInactivityTimerComplete()
+    }, INACTIVITY_TIMEOUT)
+  }
+
+  function restartTimer() {
+    console.log('Restarting timer')
+    clearTimer()
+    startTimer()
+  }
+  
   function handleInactivityTimerComplete() {
+    console.log('Setting user as inactive')
     setUserActive(false)
   }
+
   function resetInactivityTimer() {
-    clearTimeout(inactivityTimer)
+    console.log('Setting user as active')
     setUserActive(true)
   }
-  inactivityTimer = setTimeout(function() {
-    handleInactivityTimerComplete()
-  }, 
-    //1000 * 60 * 5 /* 5 minutes */
-    1000 *  5 /* 5 seconds */
-  )
+
+  console.log('Executing component. Is user active', userActive)
+  if (userActive) {
+    startTimer()
+  }
   //#endregion
   return (
     <>
@@ -73,7 +95,7 @@ export function App() { // <-- App here is a component. A component is a functio
       <Header {...personalInfo} />
       <Work />
       <Iam {...{phrases, personalInfo}} />
-      <Inactivity isActive={userActive} onResetInactivity={resetInactivityTimer}></Inactivity>
+      <Inactivity userIsActive={userActive} resetInactivityHandler={restartTimer} loginHandler={resetInactivityTimer}></Inactivity>
       <Tabs />
       <TestComponents />
       <ConditionalContent/>
