@@ -36,9 +36,10 @@ const THEMES = [
   },
 ]
 
+//#region Inactivity timer
 const INACTIVITY_TIMEOUT = 1000 *  10 /* 10 seconds */
-
 const SHOW_INACTIVITY_DIALOG = true
+//#endregion
 
 const phrases = [
   {num: 1, phrase: 'Photographer of all love, colors and cultures.' },
@@ -54,28 +55,33 @@ export function App() { // <-- App here is a component. A component is a functio
   let dialogRef = useRef()
   
   function clearTimer() {
-    clearTimeout(inactivityTimer)
+    console.log('Clearing timer')
+    clearTimeout(inactivityTimer.current)
   }
 
   function startTimer() {
-    inactivityTimer = setTimeout(function() {
+    console.log('Starting timer')
+    inactivityTimer.current = setTimeout(function() {
       handleInactivityTimerComplete()
     }, INACTIVITY_TIMEOUT)
   }
 
   function restartTimer() {
+    console.log('Restarting timer')
     clearTimer()
     startTimer()
   }
   
   function handleInactivityTimerComplete() {
+    console.log('Timer complete')
     if (SHOW_INACTIVITY_DIALOG) {
       dialogRef.current.open()
     }
     setUserActive(false)
   }
 
-  function resetInactivityTimer() {
+  function setUserAsActive() {
+    console.log('Setting user as active')
     setUserActive(true)
   }
 
@@ -95,7 +101,12 @@ export function App() { // <-- App here is a component. A component is a functio
       <Header {...personalInfo} />
       <Work />
       <Iam {...{phrases, personalInfo}} />
-      <Inactivity dialogRef={dialogRef} userIsActive={userActive} resetInactivityHandler={restartTimer} loginHandler={resetInactivityTimer}></Inactivity>
+      <Inactivity dialogRef={dialogRef} 
+        userIsActive={userActive} 
+        resetInactivityHandler={restartTimer} 
+        loginHandler={setUserAsActive} 
+        inactivityTime={INACTIVITY_TIMEOUT}>
+      </Inactivity>
       <Tabs />
       <TestComponents />
       <ConditionalContent/>

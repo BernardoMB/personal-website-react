@@ -32,6 +32,7 @@ export function Parallax({
     let [count, setCount] = useState(0);
     setTimeout(() => {
         let element = document.querySelector('#parallax-container')
+        //console.log('Child nodes', element.parentElement.childNodes)
         element.parentElement.childNodes.forEach((sibiling) => {
             if (sibiling.style && sibiling.id !== 'parallax-container') {
                 sibiling.style.backgroundColor = appBackgroundColor

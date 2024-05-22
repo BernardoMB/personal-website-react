@@ -9,6 +9,7 @@ const InactivityModal = forwardRef(function InactivityModal({ userIsActive, logi
     useImperativeHandle(ref, () => {
         return {
             open() {
+                console.log('Opening dialog')
                 dialog.current.showModal()
             }
         }
