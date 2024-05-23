@@ -91,12 +91,6 @@ export function App() { // <-- App here is a component. A component is a functio
   //#endregion
   return (
     <>
-      {/* <Parallax 
-        firstName={personalInfo.firstName}
-        alias={personalInfo.alias}
-        lastName={personalInfo.lastName} 
-        arrowDownSvg={arrowDownSvg}
-      /> */}
       <Parallax {...{...personalInfo, arrowDownSvg, theme, appBackgroundColor: theme['background-color']}} className='display-block' />
       <Header {...personalInfo} />
       <Work />

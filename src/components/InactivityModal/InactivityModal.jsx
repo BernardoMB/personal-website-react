@@ -14,8 +14,11 @@ const InactivityModal = forwardRef(function InactivityModal({ userIsActive, logi
             }
         }
     })
+    function handleClose() {
+        console.log('Closing dialog');
+    }
     return <>
-        <dialog ref={dialog} className={styles['result-modal']}>
+        <dialog ref={dialog} className={styles['result-modal']} onClose={handleClose}>
             <h2>Inactivity timeout expired</h2>
             <form method="dialog">
                 <button onClick={goToLoginScreen}>Go to login screen</button>
