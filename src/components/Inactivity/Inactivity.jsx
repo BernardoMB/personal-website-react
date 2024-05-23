@@ -43,6 +43,9 @@ export default function Inactivity({dialogRef, userIsActive, resetInactivityHand
     function showOptionDialog() {
         selectOptionDialogRef.current.open()
     }
+    function optionSelectedCallback(optionSelected) {
+        console.log(`User selected option ${optionSelected}`)
+    }
     return <>
         <InactivityModal ref={dialogRef} userIsActive={userIsActive} loginHandler={resetInactivity}></InactivityModal>
         <p className={userIsActive? styles['active'] : styles['inactive']}>{userIsActive ? 'User is active' : 'User is inactive'}</p>
@@ -58,8 +61,10 @@ export default function Inactivity({dialogRef, userIsActive, resetInactivityHand
             ref={selectOptionDialogRef}
             message={"Some message"} 
             options={["option 1", "option 2"]} 
-            selectedOptionRef={selectedOptionRef}>
-                <div>Some template</div>
+            selectedOptionRef={selectedOptionRef}
+            optionSelectedCallback={optionSelectedCallback}
+        >
+            <div>Some template</div>
         </SelectOptionDialog>
     </>
 }
